@@ -1,6 +1,7 @@
 package com.example.bookstore.entities.dto;
 
 import com.example.bookstore.entities.Author;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

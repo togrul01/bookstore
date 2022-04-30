@@ -6,7 +6,8 @@ public enum SuccessCode {
 
     SAVED("saved :"),
     DELETED("delete :"),
-    UPDATED("update :");
+    UPDATED("update :"),
+    ACCESS_DENIED("Access is denied");
 
 
 

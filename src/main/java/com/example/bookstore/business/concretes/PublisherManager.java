@@ -145,4 +145,5 @@ public class PublisherManager implements PublisherService {
         }
         return publishers;
     }
+
 }

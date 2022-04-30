@@ -1,6 +1,7 @@
 package com.example.bookstore.registration;
 
 import com.example.bookstore.core.ErrorDataResult;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -15,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "api/v1/registration")
 @AllArgsConstructor
+@Tag(name="Registration services")
 public class RegistrationController {
     private final RegistrationService registrationService;
 

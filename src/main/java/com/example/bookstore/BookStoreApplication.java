@@ -1,7 +1,12 @@
 package com.example.bookstore;
 
+
+import com.example.bookstore.business.concretes.BookManager;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 //import springfox.documentation.builders.RequestHandlerSelectors;
@@ -12,10 +17,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 //@EnableSwagger2
 @SpringBootApplication
+@OpenAPIDefinition(
+        info = @Info(
+                title = "BookStore Service API",
+                description = "BookStore crud services",
+                version = "v1"
+        )
+)
+@EnableMethodSecurity
 public class BookStoreApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(BookStoreApplication.class, args);
+        long start = System.nanoTime();
+        System.out.println(start);
     }
 
 //    @Bean
@@ -25,5 +41,4 @@ public class BookStoreApplication {
 //                .apis(RequestHandlerSelectors.basePackage("com.example.bookstore"))
 //                .build();
 //    }
-
 }
