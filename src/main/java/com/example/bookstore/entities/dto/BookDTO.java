@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -33,10 +34,6 @@ public class BookDTO {
     }
 
     public List<AuthorDTO> getAuthors(List<Author> authors) {
-        List<AuthorDTO> authorDTOS = new ArrayList<>();
-        for (Author author : authors) {
-            authorDTOS.add(new AuthorDTO(author));
-        }
-        return authorDTOS;
+        return authors.stream().map(AuthorDTO::new).collect(Collectors.toList());
     }
 }

@@ -17,16 +17,16 @@ public interface AuthorService {
 
     Result removeAuthor(Integer authorID);
 
-    DataResult<List<Author>> getAllSorted();
+    DataResult<List<AuthorDTO>> getAllSorted();
 
     DataResult<List<Author>> getAllPage(int pageNo, int pageSize);
 
     DataResult<Author> findByAuthorIdAndState(Integer authorId);
 
-    DataResult<List<Author>> findAllByAuthorNameStartingWithAndState(String authorName);
+    DataResult<List<AuthorDTO>> findAllByAuthorNameStartingWithAndState(String authorName);
 
-    DataResult<List<Author>> findAllByAuthorSurnameStartingWithAndState(String authorSurname);
+    DataResult<List<AuthorDTO>> findAllByAuthorSurnameStartingWithAndState(String authorSurname);
 
-    DataResult<List<Author>> findAllByState();
+    DataResult<List<AuthorDTO>> findAllByState();
 
 }

@@ -4,6 +4,7 @@ import com.example.bookstore.entities.Genre;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 public class GenreDTO {
@@ -19,4 +20,5 @@ public class GenreDTO {
         this.genreName = genre.getGenreName();
         this.state = genre.getState();
     }
+
 }

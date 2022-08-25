@@ -104,10 +104,11 @@ public class BookManager implements BookService {
     }
 
     @Override
-    public DataResult<List<Book>> getByBookNameStartsWith(String bookName) {
+    public DataResult<List<BookDTO>> getByBookNameStartsWith(String bookName) {
         try {
-            return new SuccessDataResult<>(repository.
-                    getByBookNameStartsWithAndState(bookName, 0), SuccessCode.DATA_LISTED.getMessage());
+            List<BookDTO> bookDTOS = MyUtils.getBookDTOS(repository.
+                    getByBookNameStartsWithAndState(bookName, 0));
+            return new SuccessDataResult<>(bookDTOS, SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return new ErrorDataResult<>(e.getMessage());
@@ -115,10 +116,11 @@ public class BookManager implements BookService {
     }
 
     @Override
-    public DataResult<List<Book>> findAllByStateAndPublisher_PublisherId(Integer publisherId) {
+    public DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherId(Integer publisherId) {
         try {
-            return new SuccessDataResult<>(repository.
-                    findAllByStateAndPublisher_PublisherIdAndPublisher_State(0, publisherId, 0),
+            List<BookDTO> bookDTOS = MyUtils.getBookDTOS(repository.
+                    findAllByStateAndPublisher_PublisherIdAndPublisher_State(0, publisherId, 0));
+            return new SuccessDataResult<>(bookDTOS,
                     SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -127,10 +129,11 @@ public class BookManager implements BookService {
     }
 
     @Override
-    public DataResult<List<Book>> findAllByStateAndPublisher_PublisherName(String publisherName) {
+    public DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherName(String publisherName) {
         try {
-            return new SuccessDataResult<>(repository.
-                    findAllByStateAndPublisher_PublisherNameAndPublisher_State(0, publisherName, 0),
+            List<BookDTO> bookDTOS = MyUtils.getBookDTOS(repository.
+                    findAllByStateAndPublisher_PublisherNameAndPublisher_State(0, publisherName, 0));
+            return new SuccessDataResult<>(bookDTOS,
                     SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,9 +142,10 @@ public class BookManager implements BookService {
     }
 
     @Override
-    public DataResult<List<Book>> findAllByState() {
+    public DataResult<List<BookDTO>> findAllByState() {
         try {
-            return new SuccessDataResult<>(repository.findAllByState(0), SuccessCode.DATA_LISTED.getMessage());
+            List<BookDTO> bookDTOS = MyUtils.getBookDTOS(repository.findAllByState(0));
+            return new SuccessDataResult<>(bookDTOS, SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return new ErrorDataResult<>(e.getMessage());

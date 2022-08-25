@@ -39,4 +39,5 @@ public class Genre implements Serializable {
         this.state = genreDTO.getState();
     }
 
+
 }

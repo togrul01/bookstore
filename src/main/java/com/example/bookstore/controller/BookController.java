@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,26 +69,26 @@ public class BookController {
     @GetMapping("/getByBookNameStartsWith")
     @Operation(summary = "This gets Book by name")
     @ApiResponses(value = {@ApiResponse(responseCode = "206", description = "Successfully getByStartName Book")})
-    public DataResult<List<Book>> getByBookNameStartsWith(@RequestParam String bookName) {
+    public DataResult<List<BookDTO>> getByBookNameStartsWith(@RequestParam String bookName) {
         return service.getByBookNameStartsWith(bookName);
     }
 
     @GetMapping("/findAllByStateAndPublisher_PublisherId")
     @Operation(summary = "This gets Book by PublisherId")
     @ApiResponses(value = {@ApiResponse(responseCode = "206", description = "Successfully PublisherId Book")})
-    public DataResult<List<Book>> findAllByStateAndPublisher_PublisherId(@RequestParam Integer publisherId) {
+    public DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherId(@RequestParam Integer publisherId) {
         return service.findAllByStateAndPublisher_PublisherId(publisherId);
     }
 
     @GetMapping("/findAllByStateAndPublisher_PublisherName")
     @Operation(summary = "This gets Book by PublisherName")
     @ApiResponses(value = {@ApiResponse(responseCode = "207", description = "Successfully PublisherName Book")})
-    public DataResult<List<Book>> findAllByStateAndPublisher_PublisherName(@RequestParam String publisherName) {
+    public DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherName(@RequestParam String publisherName) {
         return service.findAllByStateAndPublisher_PublisherName(publisherName);
     }
 
     @GetMapping("/findAllByState")
-    public DataResult<List<Book>> findAllByState() {
+    public DataResult<List<BookDTO>> findAllByState() {
         return service.findAllByState();
     }
 }

@@ -56,7 +56,7 @@ public class GenreController {
     @GetMapping("/getAllSorted")
     @Operation(summary = "You are sort this Genre")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Successfully sort Genre")})
-    public DataResult<List<Genre>> getAllSorted() {
+    public DataResult<List<GenreDTO>> getAllSorted() {
         return service.findAllSorted();
     }
 

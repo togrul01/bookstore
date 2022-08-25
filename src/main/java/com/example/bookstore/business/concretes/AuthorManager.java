@@ -9,9 +9,11 @@ import com.example.bookstore.database.AuthorRepository;
 import com.example.bookstore.entities.Author;
 import com.example.bookstore.entities.dto.AuthorDTO;
 import com.example.bookstore.enums.SuccessCode;
+import com.example.bookstore.util.MyUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +67,10 @@ public class AuthorManager implements AuthorService {
     }
 
     @Override
-    public DataResult<List<Author>> getAllSorted() {
+    public DataResult<List<AuthorDTO>> getAllSorted() {
         try {
-            return new SuccessDataResult<>(repository.findAllByStateOrderByAuthorName(0),
+            List<AuthorDTO> authorDTOS = MyUtils.getAuthorDTOS(repository.findAllByStateOrderByAuthorName(0));
+            return new SuccessDataResult<>(authorDTOS,
                     SuccessCode.SUCCESSFUL.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,8 +93,8 @@ public class AuthorManager implements AuthorService {
     @Override
     public DataResult<Author> findByAuthorIdAndState(Integer authorId) {
         try {
-            return new SuccessDataResult<>(repository.
-                    findByAuthorIdAndState(authorId, 0),
+
+            return new SuccessDataResult<>(repository.findByAuthorIdAndState(authorId, 0),
                     SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,10 +103,10 @@ public class AuthorManager implements AuthorService {
     }
 
     @Override
-    public DataResult<List<Author>> findAllByAuthorNameStartingWithAndState(String authorName) {
+    public DataResult<List<AuthorDTO>> findAllByAuthorNameStartingWithAndState(String authorName) {
         try {
-            return new SuccessDataResult<>(repository.
-                    findAllByAuthorNameStartingWithAndState(authorName, 0),
+            List<AuthorDTO> authorDTOS = MyUtils.getAuthorDTOS(repository.findAllByAuthorNameStartingWithAndState(authorName, 0));
+            return new SuccessDataResult<>(authorDTOS,
                     SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,10 +115,11 @@ public class AuthorManager implements AuthorService {
     }
 
     @Override
-    public DataResult<List<Author>> findAllByAuthorSurnameStartingWithAndState(String authorSurname) {
+    public DataResult<List<AuthorDTO>> findAllByAuthorSurnameStartingWithAndState(String authorSurname) {
         try {
-            return new SuccessDataResult<>(repository.
-                    findAllByAuthorSurnameStartingWithAndState(authorSurname, 0),
+            List<AuthorDTO> authorDTOS = MyUtils.getAuthorDTOS(repository.
+                    findAllByAuthorSurnameStartingWithAndState(authorSurname, 0));
+            return new SuccessDataResult<>(authorDTOS,
                     SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,9 +128,10 @@ public class AuthorManager implements AuthorService {
     }
 
     @Override
-    public DataResult<List<Author>> findAllByState() {
+    public DataResult<List<AuthorDTO>> findAllByState() {
         try {
-            return new SuccessDataResult<>(repository.findAllByState(0), SuccessCode.DATA_LISTED);
+            List<AuthorDTO> authorDTOS = MyUtils.getAuthorDTOS(repository.findAllByState(0));
+            return new SuccessDataResult<>(authorDTOS, SuccessCode.DATA_LISTED);
         } catch (Exception e) {
             e.printStackTrace();
             return new ErrorDataResult<>(e.getMessage());

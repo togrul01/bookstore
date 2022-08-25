@@ -4,13 +4,12 @@ import com.example.bookstore.business.abstracts.AuthorService;
 import com.example.bookstore.core.DataResult;
 import com.example.bookstore.core.Result;
 import com.example.bookstore.entities.Author;
+import com.example.bookstore.entities.Book;
 import com.example.bookstore.entities.dto.AuthorDTO;
-import com.example.bookstore.enums.SuccessCode;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,7 +49,7 @@ public class AuthorController {
     @GetMapping("/getAllSorted")
     @Operation(summary = "You are sort this Author")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Successfully sort Author")})
-    public DataResult<List<Author>> getAllSorted() {
+    DataResult<List<AuthorDTO>> getAllSorted() {
         return service.getAllSorted();
     }
 
@@ -71,19 +70,19 @@ public class AuthorController {
     @GetMapping("/getByStartName")
     @Operation(summary = "This gets author by name")
     @ApiResponses(value = {@ApiResponse(responseCode = "207", description = "Successfully getByStartName Author")})
-    public DataResult<List<Author>> findAllByAuthorNameStartingWithAndState(@RequestParam String authorName) {
+    public DataResult<List<AuthorDTO>> findAllByAuthorNameStartingWithAndState(@RequestParam String authorName) {
         return service.findAllByAuthorNameStartingWithAndState(authorName);
     }
 
     @GetMapping("/getByStartSurName")
     @Operation(summary = "This gets author by surName")
     @ApiResponses(value = {@ApiResponse(responseCode = "208", description = "Successfully getByStartSurName Author")})
-    public DataResult<List<Author>> findAllByAuthorSurnameStartingWithAndState(@RequestParam String authorSurname) {
+    public DataResult<List<AuthorDTO>> findAllByAuthorSurnameStartingWithAndState(@RequestParam String authorSurname) {
         return service.findAllByAuthorSurnameStartingWithAndState(authorSurname);
     }
 
     @GetMapping("/findAllByState")
-    public DataResult<List<Author>> findAllByState() {
+    public DataResult<List<AuthorDTO>> findAllByState() {
         return service.findAllByState();
     }
 

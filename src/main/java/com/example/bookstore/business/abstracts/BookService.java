@@ -21,12 +21,12 @@ public interface BookService {
 
     DataResult<Book> findByBookIdAndState(Integer bookId);
 
-    DataResult<List<Book>> getByBookNameStartsWith(String bookName);
+    DataResult<List<BookDTO>> getByBookNameStartsWith(String bookName);
 
-    DataResult<List<Book>> findAllByStateAndPublisher_PublisherId(Integer publisherId);
+    DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherId(Integer publisherId);
 
-    DataResult<List<Book>> findAllByStateAndPublisher_PublisherName(String publisherName);
+    DataResult<List<BookDTO>> findAllByStateAndPublisher_PublisherName(String publisherName);
 
-    DataResult<List<Book>> findAllByState();
+    DataResult<List<BookDTO>> findAllByState();
 
 }

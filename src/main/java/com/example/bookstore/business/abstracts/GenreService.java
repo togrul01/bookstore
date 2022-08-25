@@ -5,6 +5,7 @@ import com.example.bookstore.core.Result;
 import com.example.bookstore.entities.Genre;
 import com.example.bookstore.entities.Publisher;
 import com.example.bookstore.entities.dto.GenreDTO;
+import com.example.bookstore.entities.dto.GenreDtoConverter;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface GenreService {
 
     DataResult<List<Genre>> getAllPage(int pageNo, int pageSize);
 
-    DataResult<List<Genre>> findAllSorted();
+    DataResult<List<GenreDTO>> findAllSorted();
 
     DataResult<List<Genre>> findAllByStateAndGenreNameStartsWith(String genreName);
 

@@ -17,9 +17,10 @@ public class AuthorDTO {
     }
 
     public AuthorDTO(Author author) {
-        this.authorId = author.getAuthorId();
-        this.state = author.getState();
-        this.authorSurname = author.getAuthorSurname();
-        this.authorName = author.getAuthorName();
+        this.authorId =author.getAuthorId();
+        this.state =author.getState();
+        this.authorSurname =author.getAuthorSurname();
+        this.authorName =author.getAuthorName();
     }
+
 }

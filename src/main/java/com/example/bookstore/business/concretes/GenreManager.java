@@ -9,6 +9,7 @@ import com.example.bookstore.database.GenreRepository;
 import com.example.bookstore.entities.Genre;
 import com.example.bookstore.entities.dto.GenreDTO;
 import com.example.bookstore.enums.SuccessCode;
+import com.example.bookstore.util.MyUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -86,10 +87,13 @@ public class GenreManager implements GenreService {
     }
 
     @Override
-    public DataResult<List<Genre>> findAllSorted() {
+    public DataResult<List<GenreDTO>> findAllSorted() {
         try {
-            return new SuccessDataResult<>(repository.findAllByStateOrderByGenreName(0),
-                    SuccessCode.DATA_LISTED.getMessage());
+            List<GenreDTO> genreDTOS = MyUtils.genreDTOS(repository.findAllByStateOrderByGenreName(0));
+            return new SuccessDataResult<>(genreDTOS,
+                    SuccessCode.SUCCESSFUL.getMessage());
+//            return new SuccessDataResult<>(repository.findAllByStateOrderByGenreName(0),
+//                    SuccessCode.DATA_LISTED.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return new ErrorDataResult<>(e.getMessage());
